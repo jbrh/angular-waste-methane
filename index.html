@@ -1,0 +1,132 @@
+<!DOCTYPE html >
+<html lang="en"
+      ng-app="methaneEnergy" >
+<head >
+	<title>Methane energy</title >
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link href="main.css" rel="stylesheet" >
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/angular-css/1.0.7/angular-css.js" rel="stylesheet" >
+	<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+	
+</head >
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" >
+	<div class="container" >
+		<div class="navbar-header" >
+			<a class="navbar-brand">Methane from Manure
+			</a >
+		</div >
+	</div >
+</nav >
+<br>
+		<div class="col-md-4" style="float:left"
+		     ng-controller="LocationListController" >
+
+					<table class="table table-bordered" >
+
+						<tr >
+							<th>Click on Location to load place specific FRQ
+							</th >
+						</tr >
+
+						<tr ng-repeat="location in filteredLocations = (info.locations | orderBy:order)"
+						    ng-style="{'background-color': location.place == info.selectedLocation.place ? '#a8a8a8' : 'white'}"
+						    ng-click="info.selectedLocation = location" >
+							<td >{{ location.place }}</td >
+						</tr >
+
+					</table >
+
+				</div >
+
+		</div >
+		<div class="col-md-8" style="float:right">
+
+			<div ng-controller="LocationDetailController" class="panel panel-default">
+				<div class="panel-heading" >FRQ for ... {{ info.selectedLocation.place }}</div >
+				<div class="panel-body" >
+     		
+						<p >Anaerobic methane digesters has been used for years to reduce energy costs on farms in Europe and North America. The digesters operate by using anaerobic bacteria to break down animal waste. During the process, which typically uses a tank heated to about <strong>100&#8457 (38&#8451)</strong> to speed the reactions, raw manure is broken down and methane is produced. The methane can then be used to generate electricity or produce heat.</p>
+						
+						<br>
+						
+						<p>For a dairy farm in <strong>{{ info.selectedLocation.place }}</strong> with <strong>{{ info.selectedLocation.cowsonfarm }}</strong> cows, the cost of installing a digester is approximately $<strong>{{ info.selectedLocation.costofdigester }}</strong>. Assume that the farm uses <strong>{{ info.selectedLocation.kwhelectricityperyear }}</strong> kWh of electricity each year at a cost of $<strong>{{ info.selectedLocation.costperkwh }}</strong> per kWh. The waste from a single cow can produce <strong>3.0</strong> kWh of electricity each day.  Assume that the cost of electricity remains constant and the farmer uses all of the manure from the cows in an anaerobic digester to produce electricity on the farm.</p>
+					
+						<br>
+					
+						<p>Calculate the number of kWh of electricity that can be produced in one year on the farm in {{ info.selectedLocation.place }} </p >
+						
+						
+						<div ng-controller="MyCtrl"><!--http://www.w3schools.com/angular/tryit.asp?filename=try_ng_events_toggle-->
+							<button class="btn" ng-click="myFunc()">Click to Show and Hide!</button>
+						
+							<br></br>
+					
+							<div>
+    							<span ng-animate="'animate'" ng-show="showMe" mathjax-bind="info.selectedLocation.questionone"></span>
+							</div> <!--http://jsfiddle.net/spicyj/ypqvp/-->
+						
+    				    </div>
+    				    
+    				    
+    				    
+    				    
+    				<br></br>
+					
+						<p>The amount of money the farmer in <strong>{{ info.selectedLocation.place }}</strong> can save in one year, NOT counting the installation cost of the digester. (You may round your answer to the nearest $1,000 on the APES exam, but the program does not round here.)</p >
+						
+						<div ng-controller="MyCtrl"><!--http://www.w3schools.com/angular/tryit.asp?filename=try_ng_events_toggle-->
+							<button class="btn" ng-click="myFunc()">Click to Show and Hide!</button>
+						
+							<br></br>
+					
+							<div>
+    							<span ng-show="showMe" ng-animate="'animate'" mathjax-bind="info.selectedLocation.questiontwo"></span>
+							</div> <!--http://jsfiddle.net/spicyj/ypqvp/-->
+						
+    				    </div>
+    				    
+    				    <br></br>
+					
+						<p>The amount of time, in years, that it will take to recover the cost of installing an anaerobic digester on the farm in <strong>{{ info.selectedLocation.place }}</strong>. You may round your answer to the nearest whole number.</p >
+						
+						<div ng-controller="MyCtrl"><!--http://www.w3schools.com/angular/tryit.asp?filename=try_ng_events_toggle-->
+							<button class="btn" ng-click="myFunc()">Click to Show and Hide!</button>
+						
+							<br></br>
+					
+							<div>
+    							<span ng-show="showMe" ng-animate="'animate'" mathjax-bind="info.selectedLocation.questionthree"></span>
+    							
+							</div> <!--http://jsfiddle.net/spicyj/ypqvp/-->
+						
+    				    </div>
+    				    
+    				    <br></br>
+					
+						<p>Calculate the minimum number of cows the farm in <strong>{{ info.selectedLocation.place }}</strong> would need to produce 800,000 kWh of electricity per year.  You may round your answer to the nearest whole number.</p >
+						
+						<div ng-controller="MyCtrl"><!--http://www.w3schools.com/angular/tryit.asp?filename=try_ng_events_toggle-->
+							<button class="btn" ng-click="myFunc()">Click to Show and Hide!</button>
+						
+							<br></br>
+					
+							<div>
+    							<span ng-show="showMe" ng-animate="'animate'" mathjax-bind="info.selectedLocation.questionfour"></span>
+    							
+							</div> <!--http://jsfiddle.net/spicyj/ypqvp/-->
+						
+    				    </div>
+    				    
+			</div >
+		</div >
+</div >
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-animate.min.js" ></script>
+<script src="main.js" ></script>
+
+</body>
+</html >
+
